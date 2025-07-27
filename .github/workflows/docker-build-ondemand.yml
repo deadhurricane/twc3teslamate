@@ -11,6 +11,13 @@ jobs:
     - name: Check Out Repo
       uses: actions/checkout@v4
 
+    - name: Get Runner proxy settings
+      id: getproxy
+      run: |
+        echo "http_proxy=${http_proxy}" >> $GITHUB_OUTPUT
+        echo "https_proxy=${https_proxy}" >> $GITHUB_OUTPUT
+        echo "no_proxy=${no_proxy}" >> $GITHUB_OUTPUT
+
     - name: Setup buildx
       uses: docker/setup-buildx-action@v3
       with:
