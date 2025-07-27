@@ -19,9 +19,9 @@ jobs:
     - name: Get Runner proxy settings
       id: getproxy
       run: |
-        echo "http_proxy=${HTTP_PROXY}" >> $GITHUB_OUTPUT
-        echo "https_proxy=${HTTPS_PROXY}" >> $GITHUB_OUTPUT
-        echo "no_proxy=${NO_PROXY}" >> $GITHUB_OUTPUT
+        echo "http_proxy=${http_proxy}" >> $GITHUB_OUTPUT
+        echo "https_proxy=${https_proxy}" >> $GITHUB_OUTPUT
+        echo "no_proxy=${no_proxy}" >> $GITHUB_OUTPUT
 
     - name: Setup buildx
       uses: docker/setup-buildx-action@v3
