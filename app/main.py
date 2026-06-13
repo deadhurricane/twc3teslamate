@@ -198,6 +198,7 @@ async def get_vitals():
 
     current = data["current"]
     voltage = data["voltage"]
+    session_time = 0
 
     # Teslamate reports single voltage/current values - assume same on all phases
     # some Teslas (Model 3) report phases == 2 when charging on three-phase
