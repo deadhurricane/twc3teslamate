@@ -225,7 +225,8 @@ async def get_vitals():
                     session_time = 0
             else:
                 charging = False
-                session_time = 0
+                # Don't reset session_time here — evcc uses it to track the session
+                # and resetting it when state briefly leaves "charging" causes the session to reset
 
             connected = data["plugged_in"]
 
