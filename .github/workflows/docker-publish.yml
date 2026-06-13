@@ -13,20 +13,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: write
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Log in to GitHub Container Registry
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -39,7 +34,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           provenance: false
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/twc3teslamate:latest,ghcr.io/${{ github.repository_owner }}/twc3teslamate:alpine
+          tags: deadhurricane/twc3teslamate:latest,deadhurricane/twc3teslamate:alpine
 
       - name: Build and push (debian)
         uses: docker/build-push-action@v6
@@ -49,4 +44,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           provenance: false
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/twc3teslamate:debian
+          tags: deadhurricane/twc3teslamate:debian
